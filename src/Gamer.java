@@ -19,6 +19,11 @@ public class Gamer {
         this.bones.addAll(BonesManager.getBones(n));
     }
 
+    public ArrayList<Bone> getBones() {
+        return bones;
+    }
 
-
+    public int getId() {
+        return id;
+    }
 }

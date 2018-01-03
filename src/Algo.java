@@ -5,15 +5,7 @@ import java.util.HashMap;
 public class Algo {
 
 private static HashMap<Bone, Integer> states;
-static {
-    states = new HashMap<>();
-    states.put(Bone.ONE, 1);
-    states.put(Bone.TWO,2);
-    states.put(Bone.THREE,3);
-    states.put(Bone.FOUR,4);
-    states.put(Bone.FIVE,5);
-    states.put(Bone.SIX,6);
-}
+
 private HashMap<Bone, Integer> counter =  new HashMap<>();
 
     public Algo(){
@@ -29,7 +21,7 @@ private HashMap<Bone, Integer> counter =  new HashMap<>();
     private int sumBones(ArrayList<Bone> bones){
         int s =0;
         for(Bone b : bones){
-            s += states.get(b);
+            s += b.getValue();
         }
         return s;
     }
@@ -116,7 +108,7 @@ private HashMap<Bone, Integer> counter =  new HashMap<>();
     public int sum3(ArrayList<Bone> bones){
         if(counter.values().contains(new Integer(3))){
             for(Bone key : counter.keySet()){
-                if(counter.get(key).equals(new Integer(3))) return 3 * states.get(key).intValue();
+                if(counter.get(key).equals(new Integer(3))) return 3 * key.getValue();
             }
         }
         return -1;
@@ -131,7 +123,7 @@ private HashMap<Bone, Integer> counter =  new HashMap<>();
         if(s == 2){
             s =0 ;
             for(Bone key : counter.keySet()){
-                if(counter.get(key).equals(new Integer(2))) s+= 2*states.get(key).intValue();
+                if(counter.get(key).equals(new Integer(2))) s+= 2*key.getValue();
             }
             return s;
         }
@@ -141,7 +133,7 @@ private HashMap<Bone, Integer> counter =  new HashMap<>();
     public int sum2(ArrayList<Bone> bones){
         if(counter.values().contains(new Integer(2))){
             for(Bone key:counter.keySet()){
-                if(counter.get(key).equals(new Integer(2))) return 2* states.get(key).intValue();
+                if(counter.get(key).equals(new Integer(2))) return 2* key.getValue();
             }
         }
         return -1;

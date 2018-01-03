@@ -56,5 +56,10 @@ public class GameManager {
         System.out.println("Gamer " + maxy_owner + " win game !");
     }
 
+    public void deleteGamer(Gamer gamerToDelete){
+        this.game_results.remove(gamerToDelete);
+        this.round_results.remove(gamerToDelete);
+    }
+
 
 }
