@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class GameManager {
 
     private HashMap<Gamer, Integer> game_results;
     private HashMap<Gamer, Integer> round_results;
     private Algo algo;
+    private List<Observer> observers;
 
     public GameManager(){
         this.game_results.clear();
@@ -60,6 +62,11 @@ public class GameManager {
         this.game_results.remove(gamerToDelete);
         this.round_results.remove(gamerToDelete);
     }
+
+    public List<Observer> getObservers(){
+        return this.observers;
+    }
+
 
 
 }
