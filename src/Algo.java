@@ -4,29 +4,29 @@ import java.util.HashMap;
 
 public class Algo {
 
-private static HashMap<Bone, Integer> states;
+private static HashMap<Dice, Integer> states;
 
-private HashMap<Bone, Integer> counter =  new HashMap<>();
+private HashMap<Dice, Integer> counter =  new HashMap<>();
 
     public Algo(){
         counter.clear();
-        counter.put(Bone.ONE, 0);
-        counter.put(Bone.TWO, 0);
-        counter.put(Bone.THREE,0);
-        counter.put(Bone.FOUR, 0);
-        counter.put(Bone.FIVE,0);
-        counter.put(Bone.SIX,0);
+        counter.put(Dice.ONE, 0);
+        counter.put(Dice.TWO, 0);
+        counter.put(Dice.THREE,0);
+        counter.put(Dice.FOUR, 0);
+        counter.put(Dice.FIVE,0);
+        counter.put(Dice.SIX,0);
     }
 
-    private int sumBones(ArrayList<Bone> bones){
+    private int sumBones(ArrayList<Dice> bones){
         int s =0;
-        for(Bone b : bones){
+        for(Dice b : bones){
             s += b.getValue();
         }
         return s;
     }
 
-    public int getResult(ArrayList<Bone> bones){
+    public int getResult(ArrayList<Dice> bones){
 
         initialise_counter();
         setCounter(bones);
@@ -70,7 +70,7 @@ private HashMap<Bone, Integer> counter =  new HashMap<>();
 
     }
 
-    public boolean have_5_same(ArrayList<Bone> bones){
+    public boolean have_5_same(ArrayList<Dice> bones){
         initialise_counter();
         setCounter(bones);
         if(counter.keySet().contains(new Integer(5))) return true;
@@ -78,13 +78,13 @@ private HashMap<Bone, Integer> counter =  new HashMap<>();
     }
 
 
-    public boolean have_4_same(ArrayList<Bone> bones){
+    public boolean have_4_same(ArrayList<Dice> bones){
 
         if(counter.keySet().contains(new Integer(4))) return true;
         return false;
     }
 
-    public boolean have_3and2_same(ArrayList<Bone> bones){
+    public boolean have_3and2_same(ArrayList<Dice> bones){
 
 
        if(counter.values().contains(new Integer(3)) && counter.values().contains(new Integer(2))){
@@ -93,36 +93,36 @@ private HashMap<Bone, Integer> counter =  new HashMap<>();
      return false;
     }
 
-    public boolean have_bigStrit(ArrayList<Bone> bones){
+    public boolean have_bigStrit(ArrayList<Dice> bones){
         if(! counter.values().contains(new Integer(3)) && ! counter.values().contains(new Integer(2))
-                && counter.get(Bone.ONE).equals(new Integer(0))) return true;
+                && counter.get(Dice.ONE).equals(new Integer(0))) return true;
         return false;
     }
 
-    public boolean have_smallStrit(ArrayList<Bone> bones){
+    public boolean have_smallStrit(ArrayList<Dice> bones){
         if(! counter.values().contains(new Integer(3)) && ! counter.values().contains(new Integer(2))
-                && counter.get(Bone.ONE).equals(new Integer(1))) return true;
+                && counter.get(Dice.ONE).equals(new Integer(1))) return true;
         return false;
     }
 
-    public int sum3(ArrayList<Bone> bones){
+    public int sum3(ArrayList<Dice> bones){
         if(counter.values().contains(new Integer(3))){
-            for(Bone key : counter.keySet()){
+            for(Dice key : counter.keySet()){
                 if(counter.get(key).equals(new Integer(3))) return 3 * key.getValue();
             }
         }
         return -1;
     }
 
-    public int sum2_2(ArrayList<Bone> bones){
+    public int sum2_2(ArrayList<Dice> bones){
         System.out.println(counter);
         int s =0;
-        for(Bone key : counter.keySet()){
+        for(Dice key : counter.keySet()){
             if(counter.get(key).equals(new Integer(2))) s+=1;
         }
         if(s == 2){
             s =0 ;
-            for(Bone key : counter.keySet()){
+            for(Dice key : counter.keySet()){
                 if(counter.get(key).equals(new Integer(2))) s+= 2*key.getValue();
             }
             return s;
@@ -130,9 +130,9 @@ private HashMap<Bone, Integer> counter =  new HashMap<>();
         return -1;
     }
 
-    public int sum2(ArrayList<Bone> bones){
+    public int sum2(ArrayList<Dice> bones){
         if(counter.values().contains(new Integer(2))){
-            for(Bone key:counter.keySet()){
+            for(Dice key:counter.keySet()){
                 if(counter.get(key).equals(new Integer(2))) return 2* key.getValue();
             }
         }
@@ -141,12 +141,12 @@ private HashMap<Bone, Integer> counter =  new HashMap<>();
 
 
     public void initialise_counter(){
-        for(Bone b : this.counter.keySet()){
+        for(Dice b : this.counter.keySet()){
             counter.put(b, 0);
         }
     }
 
-    public void setCounter (ArrayList<Bone> bones){
+    public void setCounter (ArrayList<Dice> bones){
         for(int i=0;i<5;i++){
             this.counter.put(bones.get(i), counter.get(bones.get(i)) + 1);
         }
@@ -156,12 +156,12 @@ private HashMap<Bone, Integer> counter =  new HashMap<>();
     public static void main(String[] args){
 
         Algo algo = new Algo();
-        ArrayList<Bone> bones = new ArrayList<>();
-        bones.add(Bone.ONE);
-        bones.add(Bone.TWO);
-        bones.add(Bone.ONE);
-        bones.add(Bone.TWO);
-        bones.add(Bone.FIVE);
+        ArrayList<Dice> bones = new ArrayList<>();
+        bones.add(Dice.ONE);
+        bones.add(Dice.TWO);
+        bones.add(Dice.ONE);
+        bones.add(Dice.TWO);
+        bones.add(Dice.FIVE);
         System.out.println(algo.getResult(bones));
      }
 

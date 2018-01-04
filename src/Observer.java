@@ -1,10 +1,10 @@
-public class Observer {
+public class Observer extends GameParticipant {
 
     private int id;
 
 
     public Observer(int id){
-        this.id = id;
+        super(id);
     }
 
 

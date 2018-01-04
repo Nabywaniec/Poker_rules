@@ -7,7 +7,7 @@ public class GameManager {
     private HashMap<Gamer, Integer> game_results;
     private HashMap<Gamer, Integer> round_results;
     private Algo algo;
-    private List<Observer> observers;
+    private List<GameParticipant> observers;
 
     public GameManager(){
         this.game_results.clear();
@@ -26,6 +26,7 @@ public class GameManager {
     public void addGamer(Gamer gamer){
         this.game_results.put(gamer, new Integer(0));
         this.round_results.put(gamer, new Integer(0));
+        this.observers.add(gamer);
     }
 
 
@@ -34,8 +35,10 @@ public class GameManager {
         int maxy =-1;
         int maxy_owner =-1;
         Gamer maxy_owner2 = null;
-        for(Gamer gamer:game_results.keySet()){
-            if(algo.getResult(gamer.getBones()) > maxy){
+        for(Gamer gamer:round_results.keySet()){
+            int r;
+            round_results.put(gamer, r = algo.getResult(gamer.getBones()));
+            if(r > maxy){
                 maxy = algo.getResult(gamer.getBones());
                 maxy_owner = gamer.getId();
                 maxy_owner2 = gamer;
@@ -49,8 +52,10 @@ public class GameManager {
     public void findWinnerGame(){
         int maxy =-1;
         int maxy_owner = -1;
+        int r;
         for(Gamer gamer : game_results.keySet()){
-            if(algo.getResult(gamer.getBones()) > maxy){
+            game_results.put(gamer, r = algo.getResult(gamer.getBones()));
+            if(r > maxy){
                 maxy = algo.getResult(gamer.getBones());
                 maxy_owner = gamer.getId();
             }
@@ -63,7 +68,7 @@ public class GameManager {
         this.round_results.remove(gamerToDelete);
     }
 
-    public List<Observer> getObservers(){
+    public List<GameParticipant> getObservers(){
         return this.observers;
     }
 
